@@ -19,7 +19,7 @@
     
 	<%
 	  String driver = "org.mariadb.jdbc.Driver";
-	  String url = "jdbc:mariadb://172.16.30.73:3306/mysql";
+	  String url = "jdbc:mariadb://114.108.153.29:3306/mysql";
 	  String user = "root";
 	  String password = "1234";
 
