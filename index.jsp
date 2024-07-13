@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   
+  <title>상주와 함께하는 칼바람</title>
 </head>
 <body>
 
