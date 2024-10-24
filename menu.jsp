@@ -68,16 +68,38 @@ a {
 
 </style>
 
+<html lang="ko">
+	<%
+	  String driver2 = "org.mariadb.jdbc.Driver";
+	  String url2 = "jdbc:mariadb://114.108.153.29:3306/mysql";
+	  //String url = "jdbc:mariadb://172.16.30.73/mysql";
+	  String user2 = "root";
+	  String password2 = "1234";
+
+	  Connection conn2 = null;
+	  PreparedStatement pstmt2 = null;
+	  ResultSet rsx = null;
+	  
+	  Class.forName(driver2);
+	  conn2 = DriverManager.getConnection(url2, user2, password2);
+
+	  String sql2 = "SELECT A.USER_NAME, ROW_NUMBER() OVER(ORDER BY A.USER_NAME DESC) AS RNK FROM (SELECT DISTINCT USER_NAME FROM user_list) A ORDER BY A.USER_NAME DESC";
+	  pstmt2 = conn2.prepareStatement(sql2);
+	  rsx = pstmt2.executeQuery();
+	  %>
+	  
     <nav class = "navbar">
       <ul class = "navbar__menu">
-        <li><a href="/contents/getTable.jsp?value=변준옥">변준옥</a></li>
-        <li><a href="/contents/getTable.jsp?value=손한결">손한결</a></li>
-        <li><a href="/contents/getTable.jsp?value=송시욱">송시욱</a></li>
-        <li><a href="/contents/getTable.jsp?value=신찬울">신찬울</a></li>
-        <li><a href="/contents/getTable.jsp?value=이상주">이상주</a></li>
-        <li><a href="/contents/getTable.jsp?value=장세홍">장세홍</a></li>
-        <li><a href="/contents/getTable.jsp?value=김지환">김지환</a></li>
+	  <%
+		while (rsx.next()) {
+	   %>
+	        <li><a href="/contents/getTable.jsp?value=<%=rsx.getString("USER_NAME")%>"><%=rsx.getString("USER_NAME")%></a></li>
+    <%
+		}
+	%>
+	
         <li><a href="/contents/getTable2.jsp?value=total">종합</a></li>
       </ul>
     </nav>
     
+</html>

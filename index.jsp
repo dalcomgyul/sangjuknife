@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  
+    <link rel="stylesheet" type="text/css" href="styles.css">
   <title>상주와 함께하는 칼바람</title>
 </head>
 <body>
@@ -13,7 +12,7 @@
     <%@include file="/menu.jsp" %>
     
 <div class="content">
-
+  <h2></h2>
 </div>
 </body>
 </html>
