@@ -7,19 +7,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../styles.css">
   
   <title>상주와 함께하는 칼바람</title>
+    <%@include file="/menu.jsp" %>
 </head>
 <body>
-    <div class="wrapper">
-    <%@include file="/menu.jsp" %>
-    <main class="content">
+    <div class="content">
             
     
 	<%
 	  String driver = "org.mariadb.jdbc.Driver";
 	  String url = "jdbc:mariadb://114.108.153.29:3306/mysql";
+	  //String url = "jdbc:mariadb://172.16.30.73/mysql";
 	  String user = "root";
 	  String password = "1234";
 
@@ -29,16 +29,13 @@
 	  PreparedStatement pstmt = null;
 	  ResultSet rs = null;
 	  ResultSet rs2 = null;
-	  try {
-		    Class.forName(driver);
-		    conn = DriverManager.getConnection(url, user, password);
-		  } catch (Exception e) {
-		    e.printStackTrace();
-		  }
+	  
+	  Class.forName(driver);
+	  conn = DriverManager.getConnection(url, user, password);
 
  	  String sql = "SELECT MAX(version_info) AS VERSION_INFO  FROM version_info";
 	  pstmt = conn.prepareStatement(sql);
-	  String season = "";
+	  String season = "2024시즌 스플릿 2";
 	  rs2 = pstmt.executeQuery();
 		while (rs2.next()) {
 			season = rs2.getString("VERSION_INFO");
@@ -93,28 +90,28 @@
 			int result = rs.getInt("WIN_RATE");
 			String result_color = "#ffffff";
 			if(result == 0){
-				result_color = "#646969";
+				result_color = "#666666";
 			}
 			else if(result > 0 && result <= 20){
-				result_color = "#9da3a3";
+				result_color = "#CCCCCC";
 			}
 			else if(result > 20 && result <= 40){
-				result_color = "#9e9d9d";
+				result_color = "#999900";
 			}
 			else if(result > 40 && result < 50){
-				result_color = "#b58274";
+				result_color = "#CCCC00";
 			}
 			else if(result >= 50 && result <= 60){
-				result_color = "#edbe13";
+				result_color = "#CCCCFF";
 			}
 			else if(result > 60 && result <= 75){
-				result_color = "#e6e347";
+				result_color = "#99FF99";
 			}
 			else if(result > 75 && result <= 85){
-				result_color = "#39d43e";
+				result_color = "#00FF00";
 			}
 			else if(result > 85 && result <= 100){
-				result_color = "#38eff2";
+				result_color = "#00FFFF";
 			}
 		%>
 		<tr style = "background-color: <%=result_color%>">
@@ -128,7 +125,6 @@
 		}
 		%>
 	</table>
-    </main>
     </div>
 </body>
 </html>
